@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsToMany(models.Classes, {
+        through:'ClassSchedules',
+        foreignKey: 'id_Class'
+      });
     }
   };
   Schedules.init({
