@@ -1,18 +1,35 @@
 'use strict';
+
+// const { NOW } = require("sequelize/types");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Payments', {
-      id: {
+      /* id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      }, */
+      uuid: {
+        allowNull: false,
+        // autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
       },
       id_Registration: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Registrations",
+          key:"id"
+        }
       },
       time_of_creation: {
-        type: Sequelize.DATE
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       createdAt: {
         allowNull: false,
@@ -28,3 +45,26 @@ module.exports = {
     await queryInterface.dropTable('Payments');
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* uuid: {
+        allowNull: false,
+        // autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4
+      }, */

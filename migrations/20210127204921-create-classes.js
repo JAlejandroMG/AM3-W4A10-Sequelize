@@ -9,22 +9,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_Instructor: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Instructors",
+          key:"id"
+        }
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       subject: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       date_starts: {
+        allowNull: false,
         type: Sequelize.DATEONLY
       },
       date_ends: {
         type: Sequelize.DATEONLY
       },
       active: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,

@@ -9,19 +9,35 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_Client: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Clients",
+          key:"id"
+        }
       },
       id_Membership: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Memberships",
+          key:"id"
+        }
       },
       time_of_creation: {
-        type: Sequelize.DATE
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now')
       },
       periods: {
-        type: Sequelize.SMALLINT
+        allowNull: false,
+        type: Sequelize.SMALLINT,
+        defaultValue: 1
       },
       active: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,

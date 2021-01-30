@@ -2,26 +2,41 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('ClientClasses', {
-      id: {
+      /* id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
+      }, */
       id_Client: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Clients",
+          key:"id"
+        }
       },
       id_Class: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        references:{
+          model:"Classes",
+          key:"id"
+        }
       },
       date_starts: {
+        allowNull: false,
         type: Sequelize.DATEONLY
       },
       date_ends: {
         type: Sequelize.DATEONLY
       },
       active: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
