@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsToMany(models.Classes, {
         through:'ClassSchedules',
-        foreignKey: 'id_Class'
+        foreignKey: 'id_Schedules'
       });
     }
   };

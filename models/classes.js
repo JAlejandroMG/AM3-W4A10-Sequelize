@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsToMany(models.Schedules, {
         through:'ClassSchedules',
-        foreignKey: 'id_Schedule'
+        foreignKey: 'id_Class'
       });
       this.belongsToMany(models.Clients, {
         through:'ClientClasses',
-        foreignKey: 'id_Client'
+        foreignKey: 'id_Class'
       });
     }
   };
