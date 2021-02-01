@@ -26,6 +26,10 @@ module.exports = {
           key:"id"
         }
       },
+      amount: {
+        allowNull: false,
+        type: Sequelize.SMALLINT
+      },
       time_of_creation: {
         allowNull: false,
         type: Sequelize.DATE,

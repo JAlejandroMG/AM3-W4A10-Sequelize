@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Payments.init({
     id_Registration: DataTypes.INTEGER,
+    amount: DataTypes.SMALLINT,
     time_of_creation: DataTypes.DATE
   }, {
     sequelize,
