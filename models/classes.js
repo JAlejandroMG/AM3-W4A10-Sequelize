@@ -14,10 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Instructors, {
         foreignKey: 'id_Instructor'
       });
+
       this.belongsToMany(models.Schedules, {
         through:'ClassSchedules',
         foreignKey: 'id_Class'
       });
+
       this.belongsToMany(models.Clients, {
         through:'ClientClasses',
         foreignKey: 'id_Class'
