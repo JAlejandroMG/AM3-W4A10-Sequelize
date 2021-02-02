@@ -4,10 +4,11 @@ require('dotenv').config();
 
 const { Clients, Memberships, Payments, Registrations } = require('./models');
 
+const PORT = process.env.PORT || 8000; //Toma variable de entorno o puerto 8000
 
 const app = express(); //Instancia de express
-const PORT = process.env.PORT || 8000; //Toma variable de entorno o puerto 8000
-app.use(logger('dev'));// Morgan para tener detalle de peticiones
+app.use(express.json()); //configuracion de express para interpretar los datos que se reciben en formato JSON
+app.use(logger('dev')); // Morgan para tener detalle de peticiones
 
 
 
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 
-/* CLIENTES */
+//{ CLIENTES }//
 app.get('/clients', async(req, res) => {
    try{
       const results = await Clients.findAll();
@@ -51,7 +52,7 @@ app.post('/clients', async(req, res) => {
 });
 
 
-/* MEMBRESIAS */
+//{ MEMBRESIAS }//
 app.get('/memberships', async(req, res) => {
    try{
       const results = await Memberships.findAll();
@@ -85,7 +86,7 @@ app.post('/memberships', async(req, res) => {
 });
 
 
-/* PAGOS */
+//{ PAGOS }//
 app.get('/payments', async(req, res) => {
    try{
       const results = await Payments.findAll();

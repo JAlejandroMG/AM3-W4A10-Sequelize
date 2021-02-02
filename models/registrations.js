@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Clients, {
         foreignKey: 'id_Client'
       });
+
       this.belongsTo(models.Memberships, {
         foreignKey: 'id_Membership'
       });
