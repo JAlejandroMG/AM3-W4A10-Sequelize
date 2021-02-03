@@ -1,19 +1,5 @@
 const classSchedules = [
    {
-      "id_Class" : 6,
-      "id_Schedule" : 2,
-      "day_of_the_week" : "Jueves",
-		"createdAt": "2021-01-31 00:00:00",
-		"updatedAt": "2021-01-31 00:00:00"
-   },
-   {
-      "id_Class" : 6,
-      "id_Schedule" : 3,
-      "day_of_the_week" : "Jueves",
-		"createdAt": "2021-01-31 00:00:00",
-		"updatedAt": "2021-01-31 00:00:00"
-   },
-   {
       "id_Class" : 1,
       "id_Schedule" : 2,
       "day_of_the_week" : "Lunes",
@@ -999,6 +985,20 @@ const classSchedules = [
       "day_of_the_week" : "Miércoles",
 		"createdAt": "2021-01-31 00:00:00",
 		"updatedAt": "2021-01-31 00:00:00"
+   },
+   {
+      "id_Class" : 6,
+      "id_Schedule" : 2,
+      "day_of_the_week" : "Jueves",
+      "createdAt": "2021-01-31 00:00:00",
+      "updatedAt": "2021-01-31 00:00:00"
+   },
+   {
+      "id_Class" : 6,
+      "id_Schedule" : 3,
+      "day_of_the_week" : "Jueves",
+      "createdAt": "2021-01-31 00:00:00",
+      "updatedAt": "2021-01-31 00:00:00"
    },
    {
       "id_Class" : 6,

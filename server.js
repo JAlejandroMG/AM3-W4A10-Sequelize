@@ -2,7 +2,7 @@ const express = require('express'); //Imporatción de express
 const logger = require('morgan'); //Importación de morgan
 require('dotenv').config();
 
-const { Clients, Memberships, Payments, Registrations } = require('./models');
+const { Clients, Memberships, Payments, Registrations } = require('./models/');
 
 const PORT = process.env.PORT || 8000; //Toma variable de entorno o puerto 8000
 
@@ -21,7 +21,14 @@ app.get('/', (req, res) => {
 //{ CLIENTES }//
 app.get('/clients', async(req, res) => {
    try{
-      const results = await Clients.findAll();
+      const results = await Clients.findAll({
+         include: [
+            {
+               model: Registrations,
+               include: Payments
+            }
+         ]
+      });
       // const results = await Clients.findAll({
       //    include: [Registrations, Payments]
       // });
@@ -86,10 +93,39 @@ app.post('/memberships', async(req, res) => {
 });
 
 
+//{ Inscripciones }//
+app.get('/registrations', async(req, res) => {
+   try{
+      const results = await Registrations.findAll();
+
+      res.json(results);
+   }catch(error){
+      console.log(error);
+   }
+});
+app.post('/registrations', async(req, res) => {
+   try{
+      const data = req.body;
+      const results = await Registrations.create(data);
+
+      res.json({message: results});
+   }catch(error){
+      console.log(error);
+   }
+});
+
+
 //{ PAGOS }//
 app.get('/payments', async(req, res) => {
    try{
-      const results = await Payments.findAll();
+      const results = await Payments.findAll({
+         include: [
+            {
+               model: Registrations,
+               include: Clients
+            }
+         ]
+      });
 
       res.json(results);
    }catch(error){
