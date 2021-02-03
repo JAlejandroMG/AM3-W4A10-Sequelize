@@ -1,8 +1,12 @@
 const express = require('express'); //Imporatción de express
 const logger = require('morgan'); //Importación de morgan
-require('dotenv').config();
 
-const { Clients, Memberships, Payments, Registrations } = require('./models/');
+const clientsRouter = require('./routes/clients');
+const membershipsRouter = require('./routes/memberships');
+const paymentsRouter = require('./routes/payments');
+const registrationsRouter = require('./routes/registrations');
+
+require('dotenv').config();
 
 const PORT = process.env.PORT || 8000; //Toma variable de entorno o puerto 8000
 
@@ -18,130 +22,13 @@ app.get('/', (req, res) => {
 });
 
 
-//{ CLIENTES }//
-app.get('/clients', async(req, res) => {
-   try{
-      const results = await Clients.findAll({
-         include: [
-            {
-               model: Registrations,
-               include: Payments
-            }
-         ]
-      });
-      // const results = await Clients.findAll({
-      //    include: [Registrations, Payments]
-      // });
+app.use(clientsRouter);
 
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.get('/clients/:id', async(req, res) => {
-   try{
-      const results = await Clients.findOne({where: {id: req.params.id}});
+app.use(membershipsRouter);
 
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.post('/clients', async(req, res) => {
-   try{
-      const data = req.body;
-      const results = await Clients.create(data);
+app.use(paymentsRouter);
 
-      res.json({message: results});
-   }catch(error){
-      console.log(error);
-   }
-});
-
-
-//{ MEMBRESIAS }//
-app.get('/memberships', async(req, res) => {
-   try{
-      const results = await Memberships.findAll();
-      // const results = await Memberships.findAll({
-      //    include: [Registrations, Payments, Clients]
-      // });
-
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.get('/memberships/:id', async(req, res) => {
-   try{
-      const results = await Memberships.findOne({where: {id: req.params.id}});
-
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.post('/memberships', async(req, res) => {
-   try{
-      const data = req.body;
-      const results = await Memberships.create(data);
-
-      res.json({message: results});
-   }catch(error){
-      console.log(error);
-   }
-});
-
-
-//{ Inscripciones }//
-app.get('/registrations', async(req, res) => {
-   try{
-      const results = await Registrations.findAll();
-
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.post('/registrations', async(req, res) => {
-   try{
-      const data = req.body;
-      const results = await Registrations.create(data);
-
-      res.json({message: results});
-   }catch(error){
-      console.log(error);
-   }
-});
-
-
-//{ PAGOS }//
-app.get('/payments', async(req, res) => {
-   try{
-      const results = await Payments.findAll({
-         include: [
-            {
-               model: Registrations,
-               include: Clients
-            }
-         ]
-      });
-
-      res.json(results);
-   }catch(error){
-      console.log(error);
-   }
-});
-app.post('/payments', async(req, res) => {
-   try{
-      const data = req.body;
-      const results = await Payments.create(data);
-
-      res.json({message: results});
-   }catch(error){
-      console.log(error);
-   }
-});
+app.use(registrationsRouter);
 
 
 
