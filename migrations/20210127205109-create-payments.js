@@ -1,6 +1,6 @@
 'use strict';
 
-// const { NOW } = require("sequelize/types");
+// const uuid = require('uuid/v4');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -11,12 +11,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       }, */
-      uuid: {
+      id: {
         allowNull: false,
         // autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.literal('uuid_generate_v4()')
       },
       id_Registration: {
         allowNull: false,

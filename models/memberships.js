@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Registration, {
+      /* this.hasOne(models.Registration, {
         foreignKey: 'id_Membership'
-      });
+      }); */
     }
   };
   Memberships.init({
