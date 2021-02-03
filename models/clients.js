@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_Client'
       });
       
-      /* this.belongsToMany(models.Classes, {
+      this.belongsToMany(models.Classes, {
         through:'ClientClasses',
         foreignKey: 'id_Client'
-      }); */
+      });
     }
   };
   Clients.init({
