@@ -19,9 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_Client'
       });
 
-      /* this.belongsTo(models.Memberships, {
+      this.belongsTo(models.Memberships, {
         foreignKey: 'id_Membership'
-      }); */
+      });
     }
   };
   Registrations.init({
